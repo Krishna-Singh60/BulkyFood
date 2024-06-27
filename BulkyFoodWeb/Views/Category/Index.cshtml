@@ -1,0 +1,22 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Category";
+}
+<table class="table table-bordered border-striped">
+   <thead>
+    <tr>
+        <th>Category Name</th>
+        <th>DisplayOrder</th>
+       </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+        {  
+            <tr>
+                <td>@obj.Name</td>
+            <td>@obj.DisplayOrder</td>
+        </tr>
+        }
+    </tbody>
+</table>
