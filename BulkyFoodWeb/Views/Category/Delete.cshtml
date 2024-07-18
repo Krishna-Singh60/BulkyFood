@@ -1,0 +1,39 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Edit Category";
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form method="post">
+    <input asp-for="Id" hidden/> @*Get the ID of Item*@
+    <div class="border border-primary p-5 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Delete Category</h2>
+            <hr />
+        </div>
+        @*  <div asp-validation-summary="All" class="text-danger">* Important</div> *@
+        <div class="row pb-3 mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" disabled id="CategoryName">
+           
+        </div>
+        <div class="mb-3">
+            <label asp-for="DisplayOrder" class="form-label"></label>
+            <input asp-for="DisplayOrder" class="form-control" disabled id="DisplayOrder">
+            
+        </div>
+        <div class="row mb-3">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-danger form-control">Delete Category</button>
+            </div>
+            <div class="col-6 col-md-3 ">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary btn-outline-secondary form-control"> Back To List</a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
