@@ -1,4 +1,5 @@
-﻿using Bookie.DataAcess.Data;
+﻿using Bookie.DataAccess.Repository.IRepository;
+using Bookie.DataAcess.Data;
 using Bookie.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +7,16 @@ namespace BulkyFoodWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _categoryRepo;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(ICategoryRepository categoryRepo) // Adding/Active this service to program file
         {
-            _db = db;
+           _categoryRepo = categoryRepo;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _db.Category.ToList();
+            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -34,8 +35,8 @@ namespace BulkyFoodWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _db.Category.Add(category);
-                _db.SaveChanges();
+                _categoryRepo.Add(category);
+               _categoryRepo.Save();
                 TempData["success"] = "Category created successfully !!";
                 return RedirectToAction("Index");
             }
@@ -51,7 +52,7 @@ namespace BulkyFoodWeb.Controllers
             }
 
             // Category? catfromdb1 = _db.Category.Find(id); //only work in Promary key
-            Category? catfromdb = _db.Category.FirstOrDefault(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
+            Category? catfromdb = _categoryRepo.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
                                                                                 // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
 
 
@@ -66,9 +67,9 @@ namespace BulkyFoodWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Category.Update(category);
+              _categoryRepo.Update(category);
                 TempData["success"] = "Category updated successfully !!";
-                _db.SaveChanges();
+                _categoryRepo.Save();
                 return RedirectToAction("Index");
             }
             return View();
@@ -83,7 +84,7 @@ namespace BulkyFoodWeb.Controllers
             }
 
             // Category? catfromdb1 = _db.Category.Find(id); //only work in Promary key
-            Category? catfromdb = _db.Category.FirstOrDefault(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
+            Category? catfromdb = _categoryRepo.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
                                                                                 // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
 
 
@@ -96,14 +97,14 @@ namespace BulkyFoodWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            Category category = _db.Category.Find(id);
+            Category category = _categoryRepo.Get(u => u.Id == id);
 
             if (category == null)
             {
                 return NotFound();
             }
-            _db.Category.Remove(category);
-            _db.SaveChanges();
+            _categoryRepo.Remove(category);
+            _categoryRepo.Save();
             TempData["success"] = "Category deleted successfully !!";
             return RedirectToAction("Index");
         }

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BulkyFoodWeb", "BulkyFoodWeb\BulkyFoodWeb.csproj", "{4A1708C8-A61F-4BA9-A044-6D7E3383F4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookie.DataAccess", "Food.DataAccess\Bookie.DataAccess.csproj", "{16520B7B-5AF7-42AC-9297-10D2B751DD25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookie.DataAccess", "Food.DataAccess\Bookie.DataAccess.csproj", "{16520B7B-5AF7-42AC-9297-10D2B751DD25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookie.Models", "Food.Models\Bookie.Models.csproj", "{666ABEB4-48C1-4BE3-B897-5A73F3B6455C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookie.Models", "Food.Models\Bookie.Models.csproj", "{666ABEB4-48C1-4BE3-B897-5A73F3B6455C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bookie.Utility", "Food.Utility\Bookie.Utility.csproj", "{B70A3E43-C641-45CB-B514-A52342B89498}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bookie.Utility", "Food.Utility\Bookie.Utility.csproj", "{B70A3E43-C641-45CB-B514-A52342B89498}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
