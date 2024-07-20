@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BulkyFoodWeb.Migrations
+namespace Bookie.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240523161924_seed Category Table")]

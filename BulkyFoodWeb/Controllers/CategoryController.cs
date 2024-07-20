@@ -1,5 +1,5 @@
-﻿using BulkyFoodWeb.Data;
-using BulkyFoodWeb.Models;
+﻿using Bookie.DataAcess.Data;
+using Bookie.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyFoodWeb.Controllers

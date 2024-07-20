@@ -1,4 +1,4 @@
-using BulkyFoodWeb.Data;
+using Bookie.DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

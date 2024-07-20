@@ -16,4 +16,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Food.DataAccess\Bookie.DataAccess.csproj" />
+    <ProjectReference Include="..\Food.Models\Bookie.Models.csproj" />
+  </ItemGroup>
+
 </Project>

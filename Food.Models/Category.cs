@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BulkyFoodWeb.Models
+namespace Bookie.Models
 {
     public class Category
     {

@@ -1,7 +1,7 @@
-﻿using BulkyFoodWeb.Models;
+﻿using Bookie.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BulkyFoodWeb.Data
+namespace Bookie.DataAcess.Data
 {
     public class ApplicationDbContext : DbContext
     {
