@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Bookie.DataAccess.Repository.IRepository
 {
     //Created Interface for Category
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IProductRepository : IRepository<Product>
     {
-        void Update(Category category);
+        void Update(Product obj);
     }
 }

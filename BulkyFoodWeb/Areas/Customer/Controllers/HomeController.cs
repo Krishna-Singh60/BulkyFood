@@ -2,12 +2,13 @@ using Bookie.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BulkyFoodWeb.Controllers
+namespace BulkyFoodWeb.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-           public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }

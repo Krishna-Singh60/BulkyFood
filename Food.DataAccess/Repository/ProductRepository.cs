@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace Bookie.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private ApplicationDbContext _db;
 
-        public CategoryRepository(ApplicationDbContext db) : base(db)
+        public ProductRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
 
-        public void Update(Category category)
+        public void Update(Product obj)
         {
-            _db.Category.Update(category);
+            _db.Products.Update(obj);
         }
 
     }

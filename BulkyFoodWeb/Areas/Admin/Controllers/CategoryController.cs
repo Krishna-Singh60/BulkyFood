@@ -3,20 +3,21 @@ using Bookie.DataAcess.Data;
 using Bookie.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BulkyFoodWeb.Controllers
+namespace BulkyFoodWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepo;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ICategoryRepository categoryRepo) // Adding/Active this service to program file
+        public CategoryController(IUnitOfWork unitOfWork) // Adding/Active this service to program file
         {
-           _categoryRepo = categoryRepo;
+            _unitOfWork = unitOfWork;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _categoryRepo.GetAll().ToList();
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -35,8 +36,8 @@ namespace BulkyFoodWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _categoryRepo.Add(category);
-               _categoryRepo.Save();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully !!";
                 return RedirectToAction("Index");
             }
@@ -52,8 +53,8 @@ namespace BulkyFoodWeb.Controllers
             }
 
             // Category? catfromdb1 = _db.Category.Find(id); //only work in Promary key
-            Category? catfromdb = _categoryRepo.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
-                                                                                // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
+            Category? catfromdb = _unitOfWork.Category.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
+                                                                             // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
 
 
             if (catfromdb == null)
@@ -67,9 +68,9 @@ namespace BulkyFoodWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-              _categoryRepo.Update(category);
+                _unitOfWork.Category.Update(category);
                 TempData["success"] = "Category updated successfully !!";
-                _categoryRepo.Save();
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             return View();
@@ -84,8 +85,8 @@ namespace BulkyFoodWeb.Controllers
             }
 
             // Category? catfromdb1 = _db.Category.Find(id); //only work in Promary key
-            Category? catfromdb = _categoryRepo.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
-                                                                                // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
+            Category? catfromdb = _unitOfWork.Category.Get(u => u.Id == id); //Not specific to primary other tabel as well like name/display order and all 
+                                                                             // Category? catfromdb2 = _db.Category.Where(u => u.Id == id).FirstOrDefault();//find speciifc then find firstOrdefault
 
 
             if (catfromdb == null)
@@ -97,14 +98,14 @@ namespace BulkyFoodWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
-            Category category = _categoryRepo.Get(u => u.Id == id);
+            Category category = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (category == null)
             {
                 return NotFound();
             }
-            _categoryRepo.Remove(category);
-            _categoryRepo.Save();
+            _unitOfWork.Category.Remove(category);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully !!";
             return RedirectToAction("Index");
         }
