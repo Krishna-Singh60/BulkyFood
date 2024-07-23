@@ -5,20 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 namespace BulkyFoodWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductContoller : Controller
+    public class ProductController : Controller
     {
+        public readonly IUnitOfWork _unitOfWork;
 
-        private readonly IUnitOfWork _unitOfWork;
-
-        public ProductContoller(IUnitOfWork unitOfWork) // Adding/Active this service to program file
+        public ProductController(IUnitOfWork unitOfWork) // Adding/Active this service to program file
         {
             _unitOfWork = unitOfWork;
+            
         }
-        [HttpGet]
         public IActionResult Index()
-        {
-            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
-            return View(objProductList);
+        { 
+            List<Product> products = _unitOfWork.Product.GetAll().ToList();
+            return View(products);
         }
 
         public IActionResult Create()
@@ -58,6 +57,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
             }
             return View(prodfromdb);
         }
+
         [HttpPost]
         public IActionResult Edit(Product obj)
         {
@@ -90,6 +90,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
             }
             return View(prodfromdb);
         }
+
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePost(int? id)
         {
@@ -104,8 +105,5 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successfully !!";
             return RedirectToAction("Index");
         }
-
     }
 }
-
-

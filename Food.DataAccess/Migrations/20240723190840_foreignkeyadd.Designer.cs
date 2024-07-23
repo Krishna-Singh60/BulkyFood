@@ -3,6 +3,7 @@ using Bookie.DataAcess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookie.DataAcess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240723190840_foreignkeyadd")]
+    partial class foreignkeyadd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,10 +88,6 @@ namespace Bookie.DataAcess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<double>("ListPrice")
                         .HasColumnType("float");
 
@@ -113,7 +112,6 @@ namespace Bookie.DataAcess.Migrations
                             CategoryId = 5,
                             Description = "Good",
                             ISBN = "SWD9999901",
-                            ImageUrl = "",
                             ListPrice = 100.0,
                             Price = 80.0,
                             Title = "Fortune of Time"
@@ -125,7 +123,6 @@ namespace Bookie.DataAcess.Migrations
                             CategoryId = 2,
                             Description = "Present",
                             ISBN = "CAw777701",
-                            ImageUrl = "",
                             ListPrice = 80.0,
                             Price = 50.0,
                             Title = "Dark Skies"

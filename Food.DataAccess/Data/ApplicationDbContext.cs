@@ -30,6 +30,9 @@ namespace Bookie.DataAcess.Data
                     ISBN = "SWD9999901",
                     ListPrice = 100,
                     Price = 80,
+                    CategoryId = 5,
+                    ImageUrl = "",
+
                 },
                 new Product
                 {
@@ -40,6 +43,8 @@ namespace Bookie.DataAcess.Data
                     ISBN = "CAw777701",
                     ListPrice = 80,
                     Price = 50,
+                    CategoryId = 2,
+                    ImageUrl = "",
 
                 }
                 );
