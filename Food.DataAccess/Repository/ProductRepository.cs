@@ -22,7 +22,23 @@ namespace Bookie.DataAccess.Repository
 
         public void Update(Product obj)
         {
-            _db.Products.Update(obj);
+            var objFromDb = _db.Products.FirstOrDefault(p => p.Id == obj.Id);
+            if(objFromDb != null)
+            {
+                objFromDb.Title = obj.Title;
+                objFromDb.Description = obj.Description;
+                objFromDb.ISBN = obj.ISBN;
+                objFromDb.Price = obj.Price;
+                objFromDb.ListPrice = obj.ListPrice;
+                objFromDb.CategoryId = obj.CategoryId;
+                objFromDb.Author = obj.Author;
+                if(obj.ImageUrl !=null)
+                {
+                    objFromDb.ImageUrl = obj.ImageUrl;
+                }
+                
+            }
+            //_db.Products.Update(obj);
         }
 
     }

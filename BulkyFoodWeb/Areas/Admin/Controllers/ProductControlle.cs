@@ -17,11 +17,11 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
-            
+
         }
         public IActionResult Index()
-        { 
-            List<Product> productsList = _unitOfWork.Product.GetAll().ToList();
+        {
+            List<Product> productsList = _unitOfWork.Product.GetAll(includeproperties: "Category").ToList();
             return View(productsList);
         }
 
@@ -29,14 +29,14 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
         {
             // pass addtional funtionality
             //Each item of Category we can be select using Projection in EF Core
-           // IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.
-             //   GetAll().ToList().Select(u => new SelectListItem
-             //   {
-             //       Text = u.Name,
-               //     Value = u.Id.ToString()
-              //  });
+            // IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.
+            //   GetAll().ToList().Select(u => new SelectListItem
+            //   {
+            //       Text = u.Name,
+            //     Value = u.Id.ToString()
+            //  });
             //View_Bag use
-           // ViewBag.CategoryList = categoryList;
+            // ViewBag.CategoryList = categoryList;
             //View_Data Use  // Instead of that we are creating View Model and use it in Upsert View Using @Model 
             // ViewData["CategoryList"] = categoryList;
             ProductVM productVM = new()
@@ -49,7 +49,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
                 }),
                 Product = new Product()
             };
-            if (id == null || id ==0)  // We are creating Product
+            if (id == null || id == 0)  // We are creating Product
             {
                 //Create
                 return View(productVM);
@@ -60,7 +60,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
                 productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
                 return View(productVM);
             }
-            
+
         }
         [HttpPost]
         public IActionResult Upsert(ProductVM productVm, IFormFile? file)
@@ -71,16 +71,16 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
                 string sourcePath = @"Images\product\";
                 //Uploading the the file
                 string wwwRootpath = _webHostEnvironment.WebRootPath;
-                if(file != null)
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string prodPath = Path.Combine(wwwRootpath, sourcePath);
                     if (!string.IsNullOrEmpty(productVm.Product.ImageUrl))
                     {
-                       //Delete Old image
-                       var oldImagePath = Path.Combine(wwwRootpath, productVm.Product.ImageUrl.TrimStart('\\'));
+                        //Delete Old image
+                        var oldImagePath = Path.Combine(wwwRootpath, productVm.Product.ImageUrl.TrimStart('\\'));
 
-                        if(System.IO.File.Exists(oldImagePath))
+                        if (System.IO.File.Exists(oldImagePath))
                         {
                             System.IO.File.Delete(oldImagePath);
                         }
@@ -93,7 +93,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
                     productVm.Product.ImageUrl = sourcePath + fileName;
 
                 }
-                if(productVm.Product.Id == 0)
+                if (productVm.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVm.Product);
                     TempData["success"] = "Product created successfully !!";
@@ -103,7 +103,7 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
                     _unitOfWork.Product.Update(productVm.Product);
                     TempData["success"] = "Product updated successfully !!";
                 }
-                _unitOfWork.Save();               
+                _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             else
@@ -186,5 +186,16 @@ namespace BulkyFoodWeb.Areas.Admin.Controllers
             TempData["success"] = "Product deleted successfully !!";
             return RedirectToAction("Index");
         }
+
+        /* #region APICALLS
+         [HttpGet]
+         public IActionResult GetAll()
+         {
+             List<Product> objprod = _unitOfWork.Product.GetAll(includeproperties: "Category").ToList();
+             return Json (new {data = objprod });
+         }
+
+         #endregion
+     */
     }
 }
