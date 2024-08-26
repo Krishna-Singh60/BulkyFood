@@ -1,9 +1,11 @@
 ﻿using Bookie.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookie.DataAcess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions <ApplicationDbContext> options) : base(options)
         {
@@ -15,6 +17,10 @@ namespace Bookie.DataAcess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Add it for Identity will check it later
+            base.OnModelCreating(modelBuilder);
+
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },

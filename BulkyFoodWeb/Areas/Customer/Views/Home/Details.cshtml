@@ -1,11 +1,11 @@
 ﻿@model Product
 
 
-<form method="post">
-   @*  <input hidden asp-for="ProductId" /> *@
-    <div class="card shadow border-0 mt-4 mb-4">
-        <div class="card-header bg-secondary bg-gradient text-light py-4">
-            <div class="row">
+            <form method="post">
+            @*  <input hidden asp-for="ProductId" /> *@
+             <div class="card shadow border-0 mt-4 mb-4">
+                <div class="card-header bg-secondary bg-gradient text-light py-4">
+                <div class="row">
                 <div class="col-12 text-center">
                     <h3 class="text-white text-uppercase">@Model.Title</h3>
                     <p class="text-white-50 fw-semibold mb-0">by @Model.Author</p>
@@ -23,7 +23,8 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-3 offset-lg-1 text-center mb-3">
-
+                        <img src="@Model.ImageUrl" width="100%" class="rounded" />
+                    </div>
 
 
                        @*  @if (Model.Product.ProductImages != null && Model.Product.ProductImages.Count > 0) {
@@ -35,19 +36,19 @@
                                    .Select((image, index) => new { Image = image, Index = index })) {
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@imageWithIndex.Index" 
                                         class="@(imageWithIndex.Index==0?"active":"")" aria-current="true" aria-label="Slide 1"></button>
-                                    } *@
+                                    } 
 
                                    
                                 </div>
-                                <div class="carousel-inner">
-                                   @*  @foreach (var imageWithIndex in
-                                   Model.ProductImages
-                                   .Select((image, index) => new { Image = image, Index = index })) {
-                                        <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
-                                            <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="...">
-                                    </div>
-                                   } *@
-                                </div>
+                        @*<div class="carousel-inner">
+                                                @foreach (var imageWithIndex in
+                                            Model.ProductImages
+                                            .Select((image, index) => new { Image = image, Index = index })) {
+                                                <div class="@(imageWithIndex.Index==0?"carousel-item active":"carousel-item")">
+                                                    <img src="@imageWithIndex.Image.ImageUrl" class="d-block w-100" alt="...">
+                                            </div>
+                                            }
+                            </div>
                                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
@@ -58,16 +59,16 @@
                                 </button>
                             </div>
 
-                       @*  } *@
-
-                       
+                       } 
 
 
 
 
 
 
-                    </div>
+
+
+            </div> *@
                     <div class="col-12 col-lg-6 offset-lg-1">
 
                         <div class="col-12 col-md-6 pb-4">
@@ -98,9 +99,9 @@
                             </div>
                         </div>
                         <div class="row pl-2 my-3">
-                           @*  <p class="text-secondary lh-sm">@Html.Raw(Model.Description) </p> *@
+                           <p class="text-secondary lh-sm">@Html.Raw(Model.Description) </p> 
                         </div>
-                     @*    <div class="row pl-2 mb-3">
+                     @*   <div class="row pl-2 mb-3">
                             <div class="col-md-4">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary text-white border-0 fw-semibold"

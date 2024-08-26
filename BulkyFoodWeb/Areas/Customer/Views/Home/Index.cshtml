@@ -18,11 +18,12 @@
                     <p class="card-title text-warning text-center">By <b>@product.Author</b></p>
                      </div>
                     <div class="p-1">
-                                <p class="text-dark opacity-75 text-center">List Price : <span class="text-decoration-line-through">@product.ListPrice.ToString("c")</span></p>                        
-                    </div>
-                            <div class="p-1">
+                                <p class="text-dark opacity-75 text-center">List Price : <span class="text-decoration-line-through">@product.ListPrice.ToString("c")</span></p>
                                 <p class="text-dark opacity-75 text-center">Price : <span>@product.Price.ToString("c")</span></p>
-                            </div>
+                    </div>
+                           @*  <div class="p-1">
+                                <p class="text-dark opacity-75 text-center">Price : <span>@product.Price.ToString("c")</span></p>
+                            </div> *@
                 </div>
                @*  asp-route-{name should be same as parameter in controller, here I pass id} *@
                         <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary bg-gradient border-0 form-control">
