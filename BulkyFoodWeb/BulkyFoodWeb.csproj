@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Food.DataAccess\Bookie.DataAccess.csproj" />
     <ProjectReference Include="..\Food.Models\Bookie.Models.csproj" />
+    <ProjectReference Include="..\Food.Utility\Bookie.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>

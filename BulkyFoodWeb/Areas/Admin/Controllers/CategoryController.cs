@@ -1,11 +1,14 @@
 ﻿using Bookie.DataAccess.Repository.IRepository;
 using Bookie.DataAcess.Data;
 using Bookie.Models;
+using Bookie.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyFoodWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
